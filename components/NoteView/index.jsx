@@ -31,11 +31,12 @@ const index=()=>{
     const getNotes=async ()=>{
         if(account[0]){
          try{
-         const fetchedNotes=await contract.methods.getNotes(account[0]).call({from:account[0]});
-         const cleanedNotes=[...fetchedNotes].map((note)=>{ return { id:parseInt(String(note["id"])),content:note["content"]}}).filter((note)=>note.content != "");
-         setNotes(cleanedNotes)
-         setNotesTotalNumber(cleanedNotes.length);
-         console.log(notes);
+             const fetchedNotes=await contract.methods.getNotes(account[0]).call({from:account[0]});
+             const cleanedNotes=[...fetchedNotes].map((note)=>{ return { id:parseInt(String(note["id"])),content:note["content"]}}).filter((note)=>note.content != "");
+             setNotes(cleanedNotes)
+             setNotesTotalNumber(cleanedNotes.length);
+           
+             console.log(notes);
          }catch(err){
             console.log(err);
          }
@@ -43,11 +44,16 @@ const index=()=>{
 
     }
 
+    useEffect(()=>{   
+        getNotes();
+        setColorArray([]);
+        setSlidingWindow(0);
+      
+    },[account]);
 
     useEffect(()=>{
-        setColorArray([])
-        getNotes();
-    },[account]);
+        console.log(slidingWindow);
+    },[slidingWindow]);
 
     return(
         <div className="mainNoteContainer">
@@ -99,17 +105,18 @@ const index=()=>{
                 </div>
                 )
             )}
-            <div>
+            { isConnected && (<div>
                 <div className="notesNav slider-controler">
-                      <motion.div whileTap={{ scale:1.2 }} className="leftNav slider-arrow-l" onClick={()=> setSlidingWindow(slidingWindow-1)}>
+                      <motion.div whileTap={{ scale:1.2 }} className="leftNav slider-arrow-l" onClick={()=> slidingWindow > 0 ? setSlidingWindow(slidingWindow-1) : setSlidingWindow(0)}>
                         <div className="iconDash" style={{ background:`var(${colorArray[slidingWindow]})`}}></div>
                     </motion.div>
-                    <motion.div whileTap={{ scale:1.2 }} className="rightNav slider-arrow-r"  onClick={()=> setSlidingWindow(slidingWindow < notes.length/4 ? slidingWindow+1 : slidingWindow)}>
-                        <div className="iconDash" style={{ background:`var(${colorArray[slidingWindow+3]})`}}></div>
+                    <motion.div whileTap={{ scale:1.2 }} className="rightNav slider-arrow-r"  onClick={()=> 
+                        slidingWindow < 4 ? setSlidingWindow(slidingWindow+1) : setSlidingWindow(slidingWindow) }>
+                        <div className="iconDash" style={{ background:`var(${ account ? colorArray[(slidingWindow+3)] : "--color-slate-dark"})`}}></div>
                     </motion.div>
                     <div className="swiper-pagination"></div>
                 </div>
-            </div>
+            </div>)}
         </div>
     );
 }
