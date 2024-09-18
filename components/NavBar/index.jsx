@@ -14,13 +14,14 @@ import { useEffect } from "react";
    const notesNum=motionValue(0);
    const rounded=useTransform(notesNum,latest => Math.round(latest));
    const addNoteStatus=useStore((state)=>state.addNoteStatus);
+   const viewNoteStatus=useStore((state)=>state.viewNoteStatus);
   
    useEffect(() => {
       
       const controls = animate(notesNum, totalNotesNum,{duration:0.5});
       
       return () => controls.stop()
-    }, [account,totalNotesNum,addNoteStatus]);
+    }, [account,totalNotesNum,addNoteStatus,viewNoteStatus]);
 
     return(
         <div className="navContainer">

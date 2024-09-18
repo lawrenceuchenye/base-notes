@@ -17,8 +17,8 @@ const index=({id,content,notes,setNotes,colorArray})=>{
     const account=useStore((state)=>state.account);
     const setNotesTotalNumber=useStore((state)=>state.setNotesTotalNumber);
     const setViewNoteStatus=useStore((state)=>state.setViewNoteStatus);
- 
-    const totalNotesNumber=useStore((state)=>state.totalNotes)
+    const setActiveNote=useStore((state)=> state.setActiveNote);
+    const totalNotesNumber=useStore((state)=>state.totalNotes);
     
     useEffect(()=>{
         if(colorArray.length < totalNotesNumber){
@@ -39,7 +39,7 @@ const index=({id,content,notes,setNotes,colorArray})=>{
      }
 
     return(
-        <motion.div onClick={()=> setViewNoteStatus(true)} whileHover={{ scale:1.1}} transition={{  type:"spring",stiffness:200}}  animate={animControl} className="noteContainer" style={{ background:`var(${color})`}}>
+        <motion.div onClick={()=> { setViewNoteStatus(true); setActiveNote({id:id,content:content}) }} whileHover={{ scale:1.1}} transition={{  type:"spring",stiffness:200}}  animate={animControl} className="noteContainer" style={{ background:`var(${color})`}}>
             <p>{parse(content.slice(0,200)+"...")}</p>
             <div className="trashIcon">
             <motion.i onClick={()=>delCard(id)} whileTap={{ scale:1.3}} className="fa fa-trash"></motion.i>

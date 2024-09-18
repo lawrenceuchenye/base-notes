@@ -23,7 +23,7 @@ function App() {
       <NoteView /> 
       <div className="footer">
              <hr />
-             <p>Made with <i className="fa fa-heart"></i> by @warpghost from @baseafrica</p>
+             <p>Made with <i className="fa fa-heart"></i> by @wt from @baa</p>
         </div>  
         { addNoteStatus && <AddNote /> }
         { viewNoteStatus && <ViewNote />}
