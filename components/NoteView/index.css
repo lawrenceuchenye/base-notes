@@ -1,0 +1,88 @@
+
+.mainNoteContainer{
+    width:98w;
+    height: 70vh;
+    overflow:hidden;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:10px 20px;
+}
+
+
+.noNotesContainer{
+    width:100%;
+    color:var(--color-white);
+    text-align: center;
+
+}
+
+.noNotesContainer i{
+    font-size: 65px;
+}
+
+.noNotesContainer span{
+    font-size: 45px;
+    font-family: "Monoton";
+}
+
+.notesContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:500px;
+    position: relative;
+    z-index: 1;
+}
+
+.notesNav{
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.leftNav{
+    width:40px;
+    height:40px;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    position:absolute;
+    bottom: 10px;
+    right:91vw;
+    z-index: 6;
+    cursor: pointer;
+}
+
+
+.leftNav .iconDash{
+    width:20px;
+    height:5px;
+    position: relative;
+    top:17px;
+    left:20px;
+    background-color: var(--color-slate-dark);
+}
+
+.rightNav{
+    width:40px;
+    height:40px;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    position:absolute;
+    bottom: 10px;
+    left:-4vw;
+    z-index: 6;
+    cursor: pointer;
+}
+
+
+
+.rightNav .iconDash{
+    width:20px;
+    height:5px;
+    position: relative;
+    top:17px;
+    
+    background-color: var(--color-slate-dark);
+}

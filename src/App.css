@@ -1,0 +1,7 @@
+.footer{
+    width:70%;
+    text-align: center;
+    color:var(--color-white);
+    font-family: "Sevillana";
+    margin:0 auto;
+}

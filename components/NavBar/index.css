@@ -1,0 +1,31 @@
+
+.logoContainer{
+    margin:20px;
+    font-size: 50px;
+    font-family:"Monoton";
+}
+
+.logoContainer span:nth-child(1){
+    color:var(--color-blue);
+    font-family: "Handjet";
+}
+
+.logoContainer span:nth-child(2){
+    color:var(--color-white);
+    
+}
+
+.navContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.notes-count{
+    font-family: "Monoton";
+    color:var(--color-white);
+    right:260px;
+    position: absolute;
+    font-size:45px;
+    transform: translateY(-10px);
+}

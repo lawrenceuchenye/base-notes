@@ -1,0 +1,41 @@
+.noteContainer{
+    width:200px;
+    height:250px;
+    border-radius:15px;
+    display:flex;
+    justify-content: center;
+    align-items: start;
+    margin:5px auto;
+    font-family: "Roboto";
+    color:var(--color-white);
+    cursor:pointer;
+    padding:20px;
+    word-break: break-all;
+    position: relative;
+    top:50px;
+}
+
+.baseIcon{
+    width:40px;
+    height:40px;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    position:absolute;
+    bottom: 10px;
+    right:15px;
+}
+
+.trashIcon{
+    font-size: 25px;
+    position:absolute;
+    bottom: 10px;
+    left:15px;
+    color: #e11d48;
+}
+
+.iconDash{
+    width:20px;
+    height:5px;
+    position: relative;
+    top:17px;
+}
