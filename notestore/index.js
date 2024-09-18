@@ -6,10 +6,14 @@ const useStore = create((set) => ({
   account:null,
   totalNotes:0,
   addNoteStatus:false,
+  viewNoteStatus:false,
+  activeNote:null,
+  setActiveNote:(activeNote)=>set((state)=> ({ activeNote:activeNote})),
   toggleIsConnected:()=> set((state)=>({ isConnected:!state.isConnected })),
   setSmartContract:(smartContract,account)=> set((state)=>({ smartContract:smartContract,account:account})),
   setNotesTotalNumber:(totalNotes)=> set((state)=>({ totalNotes:totalNotes })),
-  setAddNoteStatus:(isAddNoteActive)=>set((state)=>({ addNoteStatus:isAddNoteActive}))
+  setAddNoteStatus:(isAddNoteActive)=>set((state)=>({ addNoteStatus:isAddNoteActive})),
+  setViewNoteStatus:(viewNoteStatus)=>set((state)=>({ viewNoteStatus:viewNoteStatus }))
 }));
 
 export default useStore;

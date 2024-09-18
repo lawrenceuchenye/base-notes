@@ -59,7 +59,8 @@ const index=()=>{
                     setAnimFinished(false);
                    await controls.start({ opacity:0});
                    await controls.start({y:"300px",width:"8%",height:"16%"});
-                   setAddNoteStatus(false); setValue("");
+                   setAddNoteStatus(false); 
+                   setValue("");
                   }}
                 className="ds-btn" whileTap={{ scale:1.2}} initial={{ opacity:0}} animate={{ opacity:1,transition:{type:"spring",stiffness:80,duration:0.4}}}><h1>Discard <i className="fa fa-trash"></i></h1></motion.div>
                 <motion.div onClick={()=> addNoteToBlockchain(value)} className="s-btn" whileTap={{ scale:1.2 }} initial={{ opacity:0}} animate={{ opacity:1,transition:{type:"spring",stiffness:80,duration:0.4,delay:0.2}}}><h1>Save <i className="fa fa-save"></i></h1></motion.div>
