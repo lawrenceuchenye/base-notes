@@ -22,8 +22,10 @@ const index=()=>{
     const contract=useStore((state)=>state.smartContract);
     const account=useStore((state)=>state.account);
     const setNotesTotalNumber=useStore((state)=>state.setNotesTotalNumber);
-
-    const [notes,setNotes]=useState(null);
+    const notes=useStore((state)=>state.notes);
+    const setNotes=useStore((state)=>state.setNotes);
+  
+    
     const [slidingWindow,setSlidingWindow]=useState(0);
 
     const [colorArray,setColorArray]=useState([]);

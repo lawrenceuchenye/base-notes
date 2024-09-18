@@ -6,14 +6,21 @@ import { useState,useEffect } from "react";
 import useStore from "../../../notestore";
 import { toast } from "react-toastify";
 
-const index=({ note })=>{
+const index=()=>{
     const [cardColors,setCardColor]=useState(["--color-sky","--color-green","--color-emerald","--color-rose","--color-red","--color-amber","--color-orange","color-pink"]);
     const [color,setColor]=useState(cardColors[rand(0,cardColors.length-2)]);
     const [value, setValue] = useState("");
     const [animFinished,setAnimFinished]=useState(false);
     const setViewNoteStatus=useStore((state)=>state.setViewNoteStatus);
+    const notes=useStore((state)=>state.notes);
+    const setNotes=useStore((state)=>state.setNotes);
     const activeNote=useStore((state)=>state.activeNote);
-
+    const totalNotesNumber=useStore((state)=>state.totalNotes);
+    const setNotesTotalNumber=useStore((state)=>state.setNotesTotalNumber);
+    const contract=useStore((state)=> state.smartContract);
+    const account=useStore((state)=>state.account);
+   
+  
     const controls = useAnimationControls();
     const animChain=async ()=>{
         await controls.start({ y:"0",opacity:1});
@@ -21,13 +28,14 @@ const index=({ note })=>{
         setAnimFinished(true);
     }
     
-    const delCard=async (noteId)=>{
+    const delNote=async (noteId)=>{
         await contract.methods.deleteNote(noteId).send({from:account[0]});
         await controls.start({ opacity:0});
         await controls.start({y:"300px",width:"8%",height:"16%"});
         setNotes(notes.filter((note)=> note.id != noteId));
         setNotesTotalNumber(totalNotesNumber-1);
-        
+        setAnimFinished(false);
+        setViewNoteStatus(false);
      }
 
     useEffect(()=>{
@@ -42,10 +50,7 @@ const index=({ note })=>{
            {animFinished && (
             <div className="btnsContainer">
                 <motion.div onClick={async ()=>{  
-                setAnimFinished(false);
-                   await controls.start({ opacity:0});
-                   await controls.start({y:"300px",width:"8%",height:"16%"});
-                   setViewNoteStatus(false);
+                   await delNote(activeNote.id);
                   }}
                 className="ds-btn" whileTap={{ scale:1.2}} initial={{ opacity:0}} animate={{ opacity:1,transition:{type:"spring",stiffness:80,duration:0.4}}}><h1>Delete <i className="fa fa-trash"></i></h1></motion.div>
                 <motion.div onClick={async ()=>  {  setAnimFinished(false);

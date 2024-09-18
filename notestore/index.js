@@ -8,6 +8,8 @@ const useStore = create((set) => ({
   addNoteStatus:false,
   viewNoteStatus:false,
   activeNote:null,
+  notes:null,
+  setNotes:(notes)=>set((state)=> ({ notes:notes})),
   setActiveNote:(activeNote)=>set((state)=> ({ activeNote:activeNote})),
   toggleIsConnected:()=> set((state)=>({ isConnected:!state.isConnected })),
   setSmartContract:(smartContract,account)=> set((state)=>({ smartContract:smartContract,account:account})),
