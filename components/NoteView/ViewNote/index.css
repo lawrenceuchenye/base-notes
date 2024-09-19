@@ -14,7 +14,26 @@
 .addNoteContainer .infoContainer{
     padding: 10px 20px;
     color:var(--color-white);
+    overflow-y: scroll;
+    height:350px;
 }
+
+
+
+.infoContainer::-webkit-scrollbar{
+    width:6px;
+    cursor: pointer;
+  }
+  
+  .infoContainer::-webkit-scrollbar-track{
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .infoContainer::-webkit-scrollbar-thumb{
+    background: #38bdf8;
+    width:2px;
+    border-radius:3px;
+  }
 
 .ds-btn{
     width:150px;
@@ -64,3 +83,4 @@
     justify-content: center;
     align-items: center;
 }
+
