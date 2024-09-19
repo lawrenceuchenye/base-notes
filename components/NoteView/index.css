@@ -43,45 +43,37 @@ align-items: center;
 }
 
 .leftNav{
-    width:40px;
-    height:40px;
-    background-color: var(--color-white);
-    border-radius: 50%;
     position:absolute;
     bottom: 10px;
     right:90.5vw;
     z-index: 6;
     cursor: pointer;
+    background-color: transparent;
 }
 
 
-.leftNav .iconDash{
-    width:20px;
-    height:5px;
+.leftNav i{
+    font-size: 40px;
     position: relative;
-    top:17px;
-    left:20px;
-    background-color: var(--color-slate-dark);
+    color: var(--color-white);
+    transform: rotate(-132deg);
+    
 }
 
 .rightNav{
-    width:40px;
-    height:40px;
-    background-color: var(--color-white);
     border-radius: 50%;
     position:absolute;
     bottom: 10px;
     left:-4.5vw;
     z-index: 6;
     cursor: pointer;
+
 }
 
-.rightNav .iconDash{
-    width:20px;
-    height:5px;
+.rightNav   i{
+    font-size: 40px;
     position: relative;
-    top:17px;
+    color: var(--color-white);
+    transform: rotate(45deg);
     
-    background-color: var(--color-slate-dark);
 }
-

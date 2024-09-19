@@ -110,12 +110,11 @@ const index=()=>{
             { isConnected && (<div>
                 <div className="notesNav slider-controler">
                       <motion.div whileTap={{ scale:1.2 }} className="leftNav slider-arrow-l" onClick={()=> slidingWindow > 0 ? setSlidingWindow(slidingWindow-1) : setSlidingWindow(0)}>
-                        <div className="iconDash" style={{ background:`var(${colorArray[slidingWindow]})`}}></div>
+                       
+                        <i class="fa-solid fa-square-up-right"></i>
                     </motion.div>
-                    <motion.div whileTap={{ scale:1.2 }} className="rightNav slider-arrow-r"  onClick={()=> 
-                        slidingWindow < 4 ? setSlidingWindow(slidingWindow+1) : setSlidingWindow(slidingWindow) }>
-                        <div className="iconDash" style={{ background:`var(${ account ? colorArray[(slidingWindow+3)] : "--color-slate-dark"})`}}></div>
-                    </motion.div>
+                    <motion.div whileTap={{ scale:1.2 }} className="rightNav slider-arrow-r">
+                              <i class="fa-solid fa-square-up-right"></i>                    </motion.div>
                     <div className="swiper-pagination"></div>
                 </div>
             </div>)}
