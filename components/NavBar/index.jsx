@@ -29,10 +29,12 @@ import { useEffect } from "react";
             <motion.span initial={{ y:"100px",opacity:0}} animate={{ y:0,opacity:1}} transition={{ stiffness:800,type:"spring",duration:3}}>Base</motion.span><span>Notes</span>
            </div>
 
-           <div>
-            { isConnected && (<div>
-            <motion.span className="notes-count">{rounded}</motion.span>
-            </div>)}
+           <div className="utilsContainer">
+            { isConnected && (
+               <div className="noteCount">
+                 <motion.span className="notes-count">{rounded}</motion.span>
+            </div>
+            )}
             { isConnected && <AddNoteBtn />}
             <ConnectWalletBtn />
            </div>

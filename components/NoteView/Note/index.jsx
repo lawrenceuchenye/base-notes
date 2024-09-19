@@ -10,7 +10,7 @@ import useStore from "../../../notestore";
 import { useAnimationControls } from "framer-motion";
 import { useEffect } from "react";
 
-const index=({id,content,notes,setNotes,colorArray})=>{
+const index=({id,content,notes,setNotes})=>{
     const [cardColors,setCardColor]=useState(["--color-sky","--color-green","--color-emerald","--color-rose","--color-red","--color-amber","--color-orange","color-pink"]);
     const [color,setColor]=useState(cardColors[rand(0,cardColors.length-2)]);
     const contract=useStore((state)=> state.smartContract);
@@ -20,11 +20,6 @@ const index=({id,content,notes,setNotes,colorArray})=>{
     const setActiveNote=useStore((state)=> state.setActiveNote);
     const totalNotesNumber=useStore((state)=>state.totalNotes);
     
-    useEffect(()=>{
-        if(colorArray.length < totalNotesNumber){
-            colorArray.push(color);
-        }
-    },[]);
 
    
     

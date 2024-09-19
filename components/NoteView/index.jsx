@@ -24,11 +24,7 @@ const index=()=>{
     const setNotesTotalNumber=useStore((state)=>state.setNotesTotalNumber);
     const notes=useStore((state)=>state.notes);
     const setNotes=useStore((state)=>state.setNotes);
-  
-    
-    const [slidingWindow,setSlidingWindow]=useState(0);
-
-    const [colorArray,setColorArray]=useState([]);
+    const [isMobile,setIsMobile]=useState(false);
 
     const getNotes=async ()=>{
         if(account[0]){
@@ -48,14 +44,15 @@ const index=()=>{
 
     useEffect(()=>{   
         getNotes();
-        setColorArray([]);
-        setSlidingWindow(0);
+        if(window.innerWidth < 750){
+            setIsMobile(true);
+            return
+        }
+        setIsMobile(false);
+        
       
     },[account]);
 
-    useEffect(()=>{
-        console.log(slidingWindow);
-    },[slidingWindow]);
 
     return(
         <div className="mainNoteContainer">
@@ -74,7 +71,7 @@ const index=()=>{
             ) :(
                 isConnected  && notes.length > 0 ? (
                     <Swiper
-                    slidesPerView={4}
+                    slidesPerView={isMobile ? 1 : 3}
                     spaceBetween={25}
                     pagination={{
                       clickable: true,
@@ -94,7 +91,7 @@ const index=()=>{
                 <div className="notesContainer">
        
                     {notes.map((note)=>{
-                        return <SwiperSlide><Note colorArray={colorArray} content={note.content} id={note.id} key={note.id} notes={notes} setNotes={setNotes}/></SwiperSlide>
+                        return <SwiperSlide><Note content={note.content} id={note.id} key={note.id} notes={notes} setNotes={setNotes}/></SwiperSlide>
                     })}
                      
                 </div>
@@ -109,12 +106,13 @@ const index=()=>{
             )}
             { isConnected && (<div>
                 <div className="notesNav slider-controler">
-                      <motion.div whileTap={{ scale:1.2 }} className="leftNav slider-arrow-l" onClick={()=> slidingWindow > 0 ? setSlidingWindow(slidingWindow-1) : setSlidingWindow(0)}>
+                      <motion.div whileTap={{ scale:1.2 }} className="leftNav slider-arrow-l">
                        
                         <i class="fa-solid fa-square-up-right"></i>
                     </motion.div>
                     <motion.div whileTap={{ scale:1.2 }} className="rightNav slider-arrow-r">
-                              <i class="fa-solid fa-square-up-right"></i>                    </motion.div>
+                              <i class="fa-solid fa-square-up-right"></i>                    
+                    </motion.div>
                     <div className="swiper-pagination"></div>
                 </div>
             </div>)}

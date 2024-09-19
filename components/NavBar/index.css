@@ -29,3 +29,21 @@
     font-size:45px;
     transform: translateY(-10px);
 }
+
+@media (max-width:750px) {
+
+    .utilsContainer{
+        position: relative;
+        top:80px;
+        width:100px;
+    }
+
+    .noteCount{
+        position: relative;
+    }
+
+    .noteCount span{
+        position:absolute;
+        right:15px;
+    }
+}

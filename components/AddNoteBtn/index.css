@@ -6,3 +6,14 @@
     color:var(--color-white);
     cursor: pointer;
 }
+
+@media (max-width:750px) {
+
+    .addNoteBtn{
+        right:280px;
+    }
+
+    .addNoteBtn i{
+        position: relative;
+    }
+}
