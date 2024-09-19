@@ -3,7 +3,7 @@
     position:absolute;
     left:46%;
     top:42%;
-    z-index: 5;
+    z-index: 7;
     pointer-events: initial;
     padding:10px;
     overflow:hidden;
@@ -84,3 +84,12 @@
     align-items: center;
 }
 
+
+@media (max-width:750px) {
+    .addNoteContainer{
+        top:50%;
+        left:50%;
+        right:50%;
+        bottom: 50%;
+    }
+}

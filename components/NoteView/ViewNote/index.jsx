@@ -19,12 +19,12 @@ const index=()=>{
     const setNotesTotalNumber=useStore((state)=>state.setNotesTotalNumber);
     const contract=useStore((state)=> state.smartContract);
     const account=useStore((state)=>state.account);
-   
+
   
     const controls = useAnimationControls();
     const animChain=async ()=>{
         await controls.start({ y:"0",opacity:1});
-        await controls.start({ width:"70%",height:"85%",borderRadius:"15px",left:"15%",top:"10%"});
+        await controls.start(window.innerWidth < 750 ? {width:"90%",height:"65%",borderRadius:"15px",left:"2.5%",top:"15%"} :{ width:"70%",height:"85%",borderRadius:"15px",left:"15%",top:"10%"});
         setAnimFinished(true);
     }
     
@@ -38,14 +38,13 @@ const index=()=>{
         setViewNoteStatus(false);
      }
 
+    
     useEffect(()=>{
        animChain();
     },[]);
 
-
-
     return(
-        <motion.div transition={{ type:"spring",stiffness:100,duration:0.3}} style={{background:`var(${color})`}} initial={{ opacity:0,width:"8%",height:"16%",y:"300px",borderRadius:"50%"}} animate={controls} className="addNoteContainer">
+        <motion.div transition={{ type:"spring",stiffness:100,duration:0.3}} style={{background:`var(${color})`}} initial={window.innerWidth < 750 ? { opacity:0,width:"50px",height:"50px",y:"300px",borderRadius:"50%",left:"40%"} : { opacity:0,width:"100px",height:"100px",y:"300px",borderRadius:"50%"}} animate={controls} className="addNoteContainer">
            {animFinished && ( <div className="infoContainer">{parse(activeNote.content)}</div> )}
            {animFinished && (
             <div className="btnsContainer">

@@ -71,7 +71,7 @@ const index=()=>{
             ) :(
                 isConnected  && notes.length > 0 ? (
                     <Swiper
-                    slidesPerView={isMobile ? 1 : 3}
+                    slidesPerView={isMobile ? 1 : window.innerWidth < 850 ? 3 : 4}
                     spaceBetween={25}
                     pagination={{
                       clickable: true,
