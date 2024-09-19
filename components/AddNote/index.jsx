@@ -14,8 +14,13 @@ const index=()=>{
     const setAddNoteStatus=useStore((state)=>state.setAddNoteStatus);
     const contract=useStore((state)=>state.smartContract);
     const account=useStore((state)=>state.account);
-
+    const totalNotesNumber=useStore((state)=>state.totalNotes);
+    const setNotesTotalNumber=useStore((state)=>state.setNotesTotalNumber);
+    const notes=useStore((state)=>state.notes);
+    const setNotes=useStore((state)=>state.setNotes);
     const controls = useAnimationControls();
+
+
     const animChain=async ()=>{
         await controls.start({ y:"0",opacity:1});
         await controls.start({ width:"70%",height:"85%",borderRadius:"15px",left:"15%",top:"10%"});
@@ -41,6 +46,8 @@ const index=()=>{
         }
 
         await contract.methods.addNote(content).send({from:account[0]});
+        setNotes([...notes,{id:notes.length+1,content:content}]);
+        setNotesTotalNumber(totalNotesNumber+1);
         setAnimFinished(false);
         await controls.start({ opacity:0});
         await controls.start({y:"300px",width:"8%",height:"16%"});
