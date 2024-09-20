@@ -39,8 +39,8 @@ const index=({id,content,notes,setNotes})=>{
 
     return(
         <motion.div  whileHover={{ scale:1.1}} transition={{  type:"spring",stiffness:200}}  animate={animControl} className="noteContainer" style={{ background:`var(${color})`}}>
-           <div style={{minHeight:"230px",overflow:"hidden"}} onClick={()=> { setViewNoteStatus(true); setActiveNote({id:id,content:content}) }}>
-            <p>{parse(content.slice(0,120)+"...")}</p>
+           <div style={{height:"230px",overflow:"hidden"}} onClick={()=> { setViewNoteStatus(true); setActiveNote({id:id,content:content}) }}>
+                <p>{parse(content.slice(0,120))}</p>
             </div>
             <div className="trashIcon">
             <motion.i onClick={()=>delCard(id)} whileTap={{ scale:1.3}} style={{"opacity":isDeleteTriggered && "0.5"}} className="fa fa-trash"></motion.i>

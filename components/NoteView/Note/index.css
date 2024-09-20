@@ -10,7 +10,6 @@
     color:var(--color-white);
     cursor:pointer;
     padding:20px;
-    word-break: break-all;
     position: relative;
     top:50px;
 }
