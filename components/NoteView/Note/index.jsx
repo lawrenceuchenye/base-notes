@@ -28,14 +28,24 @@ const index=({id,content,notes,setNotes})=>{
     const animControl=useAnimationControls();
 
     const delCard=async (cardId)=>{
-        if(!isDeleteTriggered){
-        await contract.methods.deleteNote(cardId).send({from:account[0]});
-        await animControl.start({ opacity:0,scale:[1.3,1],transition:{type:"spring",duration:0.8}})
-        setNotes(notes.filter((note)=> note.id != cardId));
-        setNotesTotalNumber(totalNotesNumber-1);
-        }
         setIsDeleteTriggered(true);
+        if(!isDeleteTriggered){
+            try{
+              await contract.methods.deleteNote(cardId).send({from:account[0]});
+            }catch(err){
+                setIsDeleteTriggered(false);
+                return;
+            }
+            await animControl.start({ opacity:0,scale:[1.3,1],transition:{type:"spring",duration:0.8}});
+            setNotes(notes.filter((note)=> note.id != cardId));
+            setNotesTotalNumber(totalNotesNumber-1);
+        }
+        
      }
+
+     useEffect(()=>{
+
+     },[isDeleteTriggered]);
 
     return(
         <motion.div  whileHover={{ scale:1.1}} transition={{  type:"spring",stiffness:200}}  animate={animControl} className="noteContainer" style={{ background:`var(${color})`}}>
