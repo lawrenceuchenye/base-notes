@@ -51,7 +51,7 @@ const index=()=>{
         setIsMobile(false);
         
       
-    },[account]);
+    },[account,notes]);
 
 
     return(
