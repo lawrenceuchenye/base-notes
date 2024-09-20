@@ -13,6 +13,8 @@ import { useEffect } from "react";
 const index=({id,content,notes,setNotes})=>{
     const [cardColors,setCardColor]=useState(["--color-sky","--color-green","--color-emerald","--color-rose","--color-red","--color-amber","--color-orange","color-pink"]);
     const [color,setColor]=useState(cardColors[rand(0,cardColors.length-2)]);
+    const [isDeleteTriggered,setIsDeleteTriggered]=useState(false);
+
     const contract=useStore((state)=> state.smartContract);
     const account=useStore((state)=>state.account);
     const setNotesTotalNumber=useStore((state)=>state.setNotesTotalNumber);
@@ -26,20 +28,22 @@ const index=({id,content,notes,setNotes})=>{
     const animControl=useAnimationControls();
 
     const delCard=async (cardId)=>{
-        console.log(cardId);
+        if(!isDeleteTriggered){
         await contract.methods.deleteNote(cardId).send({from:account[0]});
         await animControl.start({ opacity:0,scale:[1.3,1],transition:{type:"spring",duration:0.8}})
         setNotes(notes.filter((note)=> note.id != cardId));
         setNotesTotalNumber(totalNotesNumber-1);
+        }
+        setIsDeleteTriggered(true);
      }
 
     return(
         <motion.div  whileHover={{ scale:1.1}} transition={{  type:"spring",stiffness:200}}  animate={animControl} className="noteContainer" style={{ background:`var(${color})`}}>
            <div style={{minHeight:"230px",overflow:"hidden"}} onClick={()=> { setViewNoteStatus(true); setActiveNote({id:id,content:content}) }}>
-            <p>{parse(content.slice(0,100))}...</p>
+            <p>{parse(content.slice(0,120)+"...")}</p>
             </div>
             <div className="trashIcon">
-            <motion.i onClick={()=>delCard(id)} whileTap={{ scale:1.3}} className="fa fa-trash"></motion.i>
+            <motion.i onClick={()=>delCard(id)} whileTap={{ scale:1.3}} style={{"opacity":isDeleteTriggered && "0.5"}} className="fa fa-trash"></motion.i>
             </div>
             <div className="baseIcon">
                 <div className="iconDash" style={{ background:`var(${color}`}}></div>
