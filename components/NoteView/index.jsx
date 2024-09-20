@@ -100,7 +100,7 @@ const index=()=>{
                 ):(
                     <div className="noNotesContainer">
                     <i class="fa-solid fa-box-open"></i><br />
-                    <span>Quite spacey add a note...</span>
+                    <span>Connect your wallet to view notes.</span>
                 </div>
                 )
             )}
